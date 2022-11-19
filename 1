@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node{
+    int coffecient;
+    int expo;
+    struct node*next;
+};
+
+struct node*first=NULL;
+void creatpoly(int co,int ex);
+void print();
+int main()
+{
+void print(){
+    struct node*ptr;
+    ptr=first;
+    while(ptr!=NULL){
+        printf("%dX^(%d)+",ptr->coffecient,ptr->expo);
+        ptr=ptr->next;
+    }
+}
+struct node*creatpoly(int co,int ex){
+    struct node*ptr;
+    struct node* temp=(struct node*)malloc(sizeof(struct node));
+    temp->coffecient=co;
+    temp->expo=ex;
+    temp->next=NULL;
+    if(first==NULL||first->expo<ex){
+        temp->next=first;
+        first=temp;}
+        else
+        {ptr=first;
+            while(ptr->next != NULL&&ptr->next->expo>ex){
+                ptr=ptr->next;
+             
+                ptr->next=temp;
+                
+            }
+        }
+   return ptr; }
+     int co,ex, n,i;
+    scanf("%d",&n);
+for(i=0;i<n;i++){
+    scanf("%d%d",&co,&ex);
+    
+    creatpoly(co,ex);}
+    print();
+
+    return 0;
+}
